@@ -4,6 +4,7 @@
  */
 package gameboard;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
 
 /**
@@ -17,11 +18,21 @@ public class Piece {
     private int height;
     private int startAngle;
     private int endAngle;
+    private Color pieceColor;
+    public boolean isSelected;
 
     /**
      * 
      */
     public Piece() {
+        this.xPos = 0;
+        this.yPos = 0;
+        this.width = 0;
+        this.height = 0;
+        this.startAngle = 0;
+        this.endAngle = 0;
+        this.pieceColor = new Color(0, 0 ,0);
+        this.isSelected = false;
     }
 
     /**
@@ -40,6 +51,8 @@ public class Piece {
         this.height = height;
         this.startAngle = startAngle;
         this.endAngle = endAngle;
+        this.pieceColor = Color.WHITE;
+        this.isSelected = false;
     }
 
     /**
@@ -138,6 +151,10 @@ public class Piece {
     }
 
     public void drawPiece(Graphics2D g2) {
+        if(isSelected)
+            g2.setColor(Color.YELLOW);
+        else
+            g2.setColor(pieceColor);
         g2.fillArc(xPos, yPos, width, height, startAngle, endAngle);
     }
 
@@ -145,6 +162,20 @@ public class Piece {
         this.setxPos(newX);
         this.setyPos(newY);
         
+    }
+
+    /**
+     * @return the pieceColor
+     */
+    public Color getPieceColor() {
+        return pieceColor;
+    }
+
+    /**
+     * @param pieceColor the pieceColor to set
+     */
+    public void setPieceColor(Color pieceColor) {
+        this.pieceColor = pieceColor;
     }
             
     
